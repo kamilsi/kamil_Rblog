@@ -3,18 +3,21 @@ languageCode = "en-us"
 title = "Kamil Sijko - data all around"
 theme = "hugo-lithium-theme"
 googleAnalytics = "UA-32504450-1"
-disqusShortname = "@kamilsijko"
+disqusShortname = "kamil-sijko"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
+#[[menu.main]]
+#    name = "About"
+#    url = "/about/"
 [[menu.main]]
-    name = "About"
-    url = "/about/"
-# [[menu.main]]
-#    name = "GitHub"
-#    url = "https://github.com/rstudio/kamilsi"
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/ksijko/"
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/kamilsi"
 [[menu.main]]
     name = "Twitter"
     url = "https://twitter.com/SijkoKamil"
@@ -32,8 +35,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     MathJaxVersion = "2.7.1"
 
     [params.logo]
-    url = "search_symbol.png"
-    width = 64
-    height = 64
+    url = "binary-code.png"
+    width = 50
+    height = 50
     alt = "Logo"
 
