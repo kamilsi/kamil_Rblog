@@ -1,9 +1,9 @@
-baseurl = "/"
+baseurl = "https://kamil.sijko.pl/"
 languageCode = "en-us"
 title = "Kamil Sijko - data all around"
 theme = "hugo-lithium-theme"
 googleAnalytics = "UA-32504450-1"
-disqusShortname = " @kamilsijko"
+disqusShortname = "@kamilsijko"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
