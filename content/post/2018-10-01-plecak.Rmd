@@ -1,0 +1,110 @@
+---
+title: Plecak
+author: Kamil Sijko
+date: '2018-10-01'
+slug: plecak
+categories:
+  - edukacja
+  - R
+tags:
+  - tidyverse
+---
+
+Mikołaj (mój super syn) jest w czwartej klasie. W tej klasie zaczyna się przedmiot"przyroda", a w jego ramach informacje o metodologii badań. Przy okazji obecnej dyskusji o wadze tornistrów postanowiłem zrobić jako pracę domową dla chętnych eksperyment ważenia zawartości plecaka, żeby dowiedzieć się, który przedmiot waży najwięcej. Czyli który najważniejszy?
+
+# Ważenie
+
+Przyrządem pomiarowym waga lidla i kuchenna. Sam plecak mocno powyżej 5kg, ale co się na to składa?
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+library(here)
+library(tidyverse)
+plecak <- read_delim(here("data/plecak.csv"), ";", 
+    escape_double = FALSE, col_types = cols(X4 = col_skip(), 
+        X5 = col_skip(), X6 = col_skip(), 
+        X7 = col_skip()), trim_ws = TRUE)
+plecak <-
+  plecak %>% 
+  fill(Przedmiot)
+plecak
+```
+
+Wszystko razem to `r sum(plecak$Waga, na.rm = TRUE)`g.
+
+# Zeszyty
+
+Pierwsza rzecz, która rzuciła nam się w oczy to spory rozstrzał jeśli chodzi o zeszyty 60-kartkowe:
+
+```{r}
+plecak %>% 
+  filter(str_detect(Rzecz, "Zeszyt")) %>% 
+  arrange(Waga)
+```
+
+Zeszyt z przyrody był w twardej oprawce, ale pozostałe wyglądały podobnie, a mimo wszystko mamy prawie 20g różnicy. Najbardziej zapisany był właśnie ten z polskiego, więc hipotezę o wadze atramentu na kartkach należy odrzucić.
+
+Absolutnym rekordzistą był za to zeszyt z techniki, który był kołonotatnikiem 100 kartkowym w bardzo solidnych, kartonowych oprawach: ważył **pół kilograma** (!). Tu można trochę zaoszczędzić.
+
+# Akcesoria
+
+Skoro już jesteśmy przy zeszytach, to ile ważą pozostałe akcesoria?
+
+```{r}
+plecak %>% 
+  filter(Przedmiot == "Przybory") %>% 
+  arrange(Waga)
+```
+
+"Koszty stałe" to kilogram plecaka i 400g za resztę - nie wygląda to źle.
+
+# Książki
+
+No i sedno: ile ważą książki?Do jednego przedmiotu często jest ich kilka, więc podsumujmy:
+
+```{r}
+plecak %>% 
+  filter(!str_detect(Rzecz,"Zeszyt"), Przedmiot != "Przybory") %>% 
+  group_by(Przedmiot) %>% 
+  summarise(sztuk = n(),
+            waga = sum(Waga, na.rm = TRUE)) %>% 
+  full_join(
+    plecak %>% 
+      filter(str_detect(Rzecz,"Zeszyt")) %>% 
+      group_by(Przedmiot) %>% 
+      summarise(zeszyt = sum(Waga, na.rm = TRUE))
+  ) %>% 
+  arrange(waga)
+```
+
+No i wszystko jasne: najważniejszym przedmiotem (przynajmniej masowo) jest wcale nie królowa nauk matematyka. Królem wagi ciężkiej jest Polski, do którego 3 książki (podręcznik i 2 zeszyty ćwiczeń) ważą w 1.5kg. Sam polski i plecak (oraz piórnik) dają 3kg. Jeśli mamy pecha i tego samgo dnia jest przyroda, to mamy już 4kg - czyli już blisko granicy której dziecko z czwartej klasy nie powinno przekraczać.
+
+# Czy da się nie przekroczyć 6kg dziennie
+
+Biorąc pod uwagę plan lekcji minimana waga plecaka wygląda nastepująco:
+
+```{r}
+plan <-
+  tibble(
+    dzien = c(
+      rep("poniedziałek", 4),
+      rep("wtorek", 5),
+      rep("środa", 5),
+      rep("czwartek", 6),
+      rep("piątek", 4)
+    ),
+    Przedmiot = c("Matematyka", "Angielski", "Polski", "WF", "Religia", "Matematyka", "Przyroda", "Polski", "Technika", "Przyroda", "Polski", "Angielski", "Informatyka", "Matematyka", "Plastyka", "Historia", "Angielski", "Muzyka", "Polski", "WF", "Matematyka", "WF", "Polski", "Religia"
+    )
+  )
+plan %>% 
+  left_join(plecak) %>% 
+  group_by(dzien) %>% 
+  summarise(waga = sum(Waga, na.rm = TRUE)) %>% 
+  arrange(waga) %>% 
+  mutate(z_pleckiem = waga + 1400)
+```
+
+W internecie czytam, że "Instytut Matki i Dziecka zaleca, żeby plecak dziecka ważył nie więcej niż 10 kg - maksymalnie 15 proc. masy jego ciała". 
+Jeśli chodzi o wagę 9-letnich chłopaków (Miko poszedł do szkoły jako 6-latek) to ze [stron Centrum Zdrowia Dziecka](http://www.czd.pl/images/stories/promocja_zdrowia/Centyle_masy_ciała_chłopcow_w_wieku_3_18_lat.jpg) czytam, że 80% dzieci będzie się mieściło w przedziale 25-41 kg. Zatem 15procent tego oznacza plecak o wadze 3.75-6.15.
+
+Czyli w praktyce albo wysyłamy młodzież na siłkę i suplementujemy białkiem, albo zmieniamy normy, albo rzeczywiście należy poważnie zastanowić się nad optymalizacją (planu, noszenia wszystkiego zawsze, szafek w szkołach). 
