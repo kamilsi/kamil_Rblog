@@ -14,7 +14,7 @@ Mikołaj (mój super syn) jest w czwartej klasie. W tej klasie zaczyna się prze
 
 # Ważenie
 
-Dane z ważenia dostępne są [w formacie CSV na github-ie](https://github.com/kamilsi/kamil_Rblog/blob/master/data/plecak.csv).
+Dane z ważenia dostępne są [w formacie CSV na github-ie](https://github.com/kamilsi/kamil_Rblog/blob/master/Rdata/plecak.csv).
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
