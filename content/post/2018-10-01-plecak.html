@@ -10,37 +10,402 @@ tags:
   - tidyverse
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 
 <p>Mikołaj (mój super syn) jest w czwartej klasie. W tej klasie zaczyna się przedmiot“przyroda”, a w jego ramach informacje o metodologii badań. Przy okazji obecnej dyskusji o wadze tornistrów postanowiłem zrobić jako pracę domową dla chętnych eksperyment ważenia zawartości plecaka, żeby dowiedzieć się, który przedmiot waży najwięcej. Czyli który najważniejszy?</p>
 <div id="wazenie" class="section level1">
 <h1>Ważenie</h1>
-<p>Przyrządem pomiarowym waga lidla i kuchenna. Sam plecak mocno powyżej 5kg, ale co się na to składa?</p>
-<pre class="r"><code>library(readr)
+<p>Dane z ważenia dostępne są <a href="https://github.com/kamilsi/kamil_Rblog/blob/master/data/plecak.csv">w formacie CSV na github-ie</a>.</p>
+<pre class="r"><code>library(tidyverse)
 library(here)
-library(tidyverse)
-plecak &lt;- read_delim(here(&quot;data/plecak.csv&quot;), &quot;;&quot;, 
-    escape_double = FALSE, col_types = cols(X4 = col_skip(), 
-        X5 = col_skip(), X6 = col_skip(), 
-        X7 = col_skip()), trim_ws = TRUE)
-plecak &lt;-
-  plecak %&gt;% 
-  fill(Przedmiot)
-plecak</code></pre>
-<pre><code>## # A tibble: 33 x 3
-##    Przedmiot  Rzecz            Waga
-##    &lt;chr&gt;      &lt;chr&gt;           &lt;int&gt;
-##  1 Polski     Ćwiczenia         296
-##  2 Polski     Podręcznik lit.   717
-##  3 Polski     Podręcznik ort.   521
-##  4 Polski     Zeszyt 60k        142
-##  5 Matematyka Podręcznik        383
-##  6 Matematyka Ćwiczenia         166
-##  7 Matematyka Zeszyt 60k        148
-##  8 Przyroda   Atlas             363
-##  9 Przyroda   Podręcznik        345
-## 10 Przyroda   Ćwiczenia         277
-## # ... with 23 more rows</code></pre>
+library(knitr)
+library(kableExtra)
+
+plecak &lt;- read_csv(here(&quot;Rdata/plecak.csv&quot;))
+plecak %&gt;% 
+  kable() %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;hover&quot;, &quot;responsive&quot;, full_width = F))</code></pre>
+<table class="table table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Przedmiot
+</th>
+<th style="text-align:left;">
+Rzecz
+</th>
+<th style="text-align:right;">
+Waga
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Polski
+</td>
+<td style="text-align:left;">
+Ćwiczenia
+</td>
+<td style="text-align:right;">
+296
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polski
+</td>
+<td style="text-align:left;">
+Podręcznik lit.
+</td>
+<td style="text-align:right;">
+717
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polski
+</td>
+<td style="text-align:left;">
+Podręcznik ort.
+</td>
+<td style="text-align:right;">
+521
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polski
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+142
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Matematyka
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+383
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Matematyka
+</td>
+<td style="text-align:left;">
+Ćwiczenia
+</td>
+<td style="text-align:right;">
+166
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Matematyka
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+148
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przyroda
+</td>
+<td style="text-align:left;">
+Atlas
+</td>
+<td style="text-align:right;">
+363
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przyroda
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+345
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przyroda
+</td>
+<td style="text-align:left;">
+Ćwiczenia
+</td>
+<td style="text-align:right;">
+277
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przyroda
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+229
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Religia
+</td>
+<td style="text-align:left;">
+Ćwiczenia
+</td>
+<td style="text-align:right;">
+208
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Religia
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+224
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Religia
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+136
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Technika
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+192
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Technika
+</td>
+<td style="text-align:left;">
+Zeszyt 100k
+</td>
+<td style="text-align:right;">
+564
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angielski
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+327
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angielski
+</td>
+<td style="text-align:left;">
+Ćwiczenia
+</td>
+<td style="text-align:right;">
+240
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angielski
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+148
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Historia
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+341
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Historia
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Muzyka
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Muzyka
+</td>
+<td style="text-align:left;">
+Zeszyt 16k
+</td>
+<td style="text-align:right;">
+62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Plastyka
+</td>
+<td style="text-align:left;">
+Podręcznik
+</td>
+<td style="text-align:right;">
+167
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Plastyka
+</td>
+<td style="text-align:left;">
+Zeszyt 16k
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Informatyka
+</td>
+<td style="text-align:left;">
+Zeszyt 60k
+</td>
+<td style="text-align:right;">
+159
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przybory
+</td>
+<td style="text-align:left;">
+Teczka
+</td>
+<td style="text-align:right;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przybory
+</td>
+<td style="text-align:left;">
+Piórnik
+</td>
+<td style="text-align:right;">
+355
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przybory
+</td>
+<td style="text-align:left;">
+Plecak
+</td>
+<td style="text-align:right;">
+1000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WF
+</td>
+<td style="text-align:left;">
+Gacie
+</td>
+<td style="text-align:right;">
+85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WF
+</td>
+<td style="text-align:left;">
+Koszulka
+</td>
+<td style="text-align:right;">
+95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WF
+</td>
+<td style="text-align:left;">
+Buty
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WF
+</td>
+<td style="text-align:left;">
+Worek
+</td>
+<td style="text-align:right;">
+117
+</td>
+</tr>
+</tbody>
+</table>
 <p>Wszystko razem to 8508g.</p>
 </div>
 <div id="zeszyty" class="section level1">
@@ -48,68 +413,84 @@ plecak</code></pre>
 <p>Pierwsza rzecz, która rzuciła nam się w oczy to spory rozstrzał jeśli chodzi o zeszyty 60-kartkowe:</p>
 <pre class="r"><code>plecak %&gt;% 
   filter(str_detect(Rzecz, &quot;Zeszyt&quot;)) %&gt;% 
-  arrange(Waga)</code></pre>
-<pre><code>## # A tibble: 10 x 3
-##    Przedmiot   Rzecz        Waga
-##    &lt;chr&gt;       &lt;chr&gt;       &lt;int&gt;
-##  1 Muzyka      Zeszyt 16k     62
-##  2 Religia     Zeszyt        136
-##  3 Polski      Zeszyt 60k    142
-##  4 Historia    Zeszyt 60k    143
-##  5 Matematyka  Zeszyt 60k    148
-##  6 Angielski   Zeszyt 60k    148
-##  7 Informatyka Zeszyt 60k    159
-##  8 Przyroda    Zeszyt 60k    229
-##  9 Technika    Zeszyt 100k   564
-## 10 Plastyka    Zeszyt 16k     NA</code></pre>
-<p>Zeszyt z przyrody był w twardej oprawce, ale pozostałe wyglądały podobnie, a mimo wszystko mamy prawie 20g różnicy. Najbardziej zapisany był właśnie ten z polskiego, więc hipotezę o wadze atramentu na kartkach należy odrzucić.</p>
-<p>Absolutnym rekordzistą był za to zeszyt z techniki, który był kołonotatnikiem 100 kartkowym w bardzo solidnych, kartonowych oprawach: ważył <strong>pół kilograma</strong> (!). Tu można trochę zaoszczędzić.</p>
+  ggplot(aes(x = Rzecz, y = Waga)) +
+  geom_jitter(height = 0, width = 0.2)</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="/post/2018-10-01-plecak_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Zeszyt z przyrody (ten ponad odstający od grupy zeszytów 60k) był w twardej oprawce, podobnie jak zeszyt z techniki - kołonotatnik, 100 kartek w bardzo solidnych, kartonowych oprawach (ważył <strong>pół kilograma</strong> (!)). Pierwszy wniosek: rezygnujemy z kołonotatników i grubych opraw, można sporo oszczędzić.</p>
 </div>
 <div id="akcesoria" class="section level1">
 <h1>Akcesoria</h1>
 <p>Skoro już jesteśmy przy zeszytach, to ile ważą pozostałe akcesoria?</p>
 <pre class="r"><code>plecak %&gt;% 
   filter(Przedmiot == &quot;Przybory&quot;) %&gt;% 
-  arrange(Waga)</code></pre>
-<pre><code>## # A tibble: 3 x 3
-##   Przedmiot Rzecz    Waga
-##   &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt;
-## 1 Przybory  Teczka     60
-## 2 Przybory  Piórnik   355
-## 3 Przybory  Plecak   1000</code></pre>
-<p>“Koszty stałe” to kilogram plecaka i 400g za resztę - nie wygląda to źle.</p>
+  arrange(Waga) %&gt;% 
+  kable() %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;hover&quot;, &quot;responsive&quot;, full_width = F))</code></pre>
+<table class="table table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Przedmiot
+</th>
+<th style="text-align:left;">
+Rzecz
+</th>
+<th style="text-align:right;">
+Waga
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Przybory
+</td>
+<td style="text-align:left;">
+Teczka
+</td>
+<td style="text-align:right;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przybory
+</td>
+<td style="text-align:left;">
+Piórnik
+</td>
+<td style="text-align:right;">
+355
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Przybory
+</td>
+<td style="text-align:left;">
+Plecak
+</td>
+<td style="text-align:right;">
+1000
+</td>
+</tr>
+</tbody>
+</table>
+<p>“Koszty stałe” to 1450g - nie wygląda to źle.</p>
 </div>
 <div id="ksiazki" class="section level1">
 <h1>Książki</h1>
-<p>No i sedno: ile ważą książki?Do jednego przedmiotu często jest ich kilka, więc podsumujmy:</p>
+<p>No i sedno: ile ważą książki? Do jednego przedmiotu często jest ich kilka, więc podsumujmy:</p>
 <pre class="r"><code>plecak %&gt;% 
   filter(!str_detect(Rzecz,&quot;Zeszyt&quot;), Przedmiot != &quot;Przybory&quot;) %&gt;% 
-  group_by(Przedmiot) %&gt;% 
-  summarise(sztuk = n(),
-            waga = sum(Waga, na.rm = TRUE)) %&gt;% 
-  full_join(
-    plecak %&gt;% 
-      filter(str_detect(Rzecz,&quot;Zeszyt&quot;)) %&gt;% 
-      group_by(Przedmiot) %&gt;% 
-      summarise(zeszyt = sum(Waga, na.rm = TRUE))
-  ) %&gt;% 
-  arrange(waga)</code></pre>
-<pre><code>## Joining, by = &quot;Przedmiot&quot;</code></pre>
-<pre><code>## # A tibble: 11 x 4
-##    Przedmiot   sztuk  waga zeszyt
-##    &lt;chr&gt;       &lt;int&gt; &lt;int&gt;  &lt;int&gt;
-##  1 Plastyka        1   167      0
-##  2 Technika        1   192    564
-##  3 WF              4   297     NA
-##  4 Muzyka          1   298     62
-##  5 Historia        1   341    143
-##  6 Religia         2   432    136
-##  7 Matematyka      2   549    148
-##  8 Angielski       2   567    148
-##  9 Przyroda        3   985    229
-## 10 Polski          3  1534    142
-## 11 Informatyka    NA    NA    159</code></pre>
-<p>No i wszystko jasne: najważniejszym przedmiotem (przynajmniej masowo) jest wcale nie królowa nauk matematyka. Królem wagi ciężkiej jest Polski, do którego 3 książki (podręcznik i 2 zeszyty ćwiczeń) ważą w 1.5kg. Sam polski i plecak (oraz piórnik) dają 3kg. Jeśli mamy pecha i tego samgo dnia jest przyroda, to mamy już 4kg - czyli już blisko granicy której dziecko z czwartej klasy nie powinno przekraczać.</p>
+  ggplot(aes(x = Przedmiot, weight = Waga, fill = Rzecz)) +
+  geom_bar() +
+  ylab(&quot;waga (g)&quot;) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2018-10-01-plecak_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>No i wszystko jasne: najważniejszym przedmiotem (przynajmniej masowo) jest wcale nie królowa nauk matematyka. Królem wagi ciężkiej jest Polski, do którego 3 książki (2 podręczniki i zeszyt ćwiczeń) ważą w 1.5kg. Sam polski i plecak (oraz piórnik) dają 3kg. Jeśli mamy pecha i tego samgo dnia jest przyroda, to mamy już 4kg - czyli już blisko granicy której dziecko z czwartej klasy nie powinno przekraczać.</p>
+<p>Nie wolno zapominać o nieobecnych, czyli w tym wypadku <strong>informatyce</strong>, która waży okrągłe 0g - nie ma ani ksiązki, ani zeszytu (a przynajmniej ja nic nie wiem). Zatem najmniej ważna jest informatyka. W ogóle nieważna.</p>
 </div>
 <div id="czy-da-sie-nie-przekroczyc-6kg-dziennie" class="section level1">
 <h1>Czy da się nie przekroczyć 6kg dziennie</h1>
@@ -131,16 +512,82 @@ plan %&gt;%
   group_by(dzien) %&gt;% 
   summarise(waga = sum(Waga, na.rm = TRUE)) %&gt;% 
   arrange(waga) %&gt;% 
-  mutate(z_pleckiem = waga + 1400)</code></pre>
+  mutate(z_pleckiem = waga + 1400) %&gt;% 
+  kable() %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;hover&quot;, &quot;responsive&quot;, full_width = F))</code></pre>
 <pre><code>## Joining, by = &quot;Przedmiot&quot;</code></pre>
-<pre><code>## # A tibble: 5 x 3
-##   dzien         waga z_pleckiem
-##   &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;
-## 1 piątek        3238       4638
-## 2 poniedziałek  3385       4785
-## 3 czwartek      3699       5099
-## 4 środa         4461       5861
-## 5 wtorek        4911       6311</code></pre>
-<p>W internecie czytam, że “Instytut Matki i Dziecka zaleca, żeby plecak dziecka ważył nie więcej niż 10 kg - maksymalnie 15 proc. masy jego ciała”. Jeśli chodzi o wagę 9-letnich chłopaków (Miko poszedł do szkoły jako 6-latek) to ze <a href="http://www.czd.pl/images/stories/promocja_zdrowia/Centyle_masy_ciała_chłopcow_w_wieku_3_18_lat.jpg">stron Centrum Zdrowia Dziecka</a> czytam, że 80% dzieci będzie się mieściło w przedziale 25-41 kg. Zatem 15procent tego oznacza plecak o wadze 3.75-6.15.</p>
+<table class="table table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+dzien
+</th>
+<th style="text-align:right;">
+waga
+</th>
+<th style="text-align:right;">
+z_pleckiem
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+piątek
+</td>
+<td style="text-align:right;">
+3238
+</td>
+<td style="text-align:right;">
+4638
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+poniedziałek
+</td>
+<td style="text-align:right;">
+3385
+</td>
+<td style="text-align:right;">
+4785
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+czwartek
+</td>
+<td style="text-align:right;">
+3699
+</td>
+<td style="text-align:right;">
+5099
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+środa
+</td>
+<td style="text-align:right;">
+4461
+</td>
+<td style="text-align:right;">
+5861
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wtorek
+</td>
+<td style="text-align:right;">
+4911
+</td>
+<td style="text-align:right;">
+6311
+</td>
+</tr>
+</tbody>
+</table>
+<p>W internecie czytam, że “Instytut Matki i Dziecka zaleca, żeby plecak dziecka ważył nie więcej niż 10 kg - maksymalnie 15 proc. masy jego ciała”. Jeśli chodzi o wagę 9-letnich chłopaków, to ze <a href="http://www.czd.pl/images/stories/promocja_zdrowia/Centyle_masy_ciała_chłopcow_w_wieku_3_18_lat.jpg">stron Centrum Zdrowia Dziecka</a> czytam, że 80% dzieci będzie się mieściło w przedziale 25-41 kg. Zatem 15 procent tego oznacza, że plecak powinien mieć <strong>maksymalną</strong> wagę w przedziale pomiędzy 3.75kg a 6.15kg - w zależności od wagi dziecka.</p>
 <p>Czyli w praktyce albo wysyłamy młodzież na siłkę i suplementujemy białkiem, albo zmieniamy normy, albo rzeczywiście należy poważnie zastanowić się nad optymalizacją (planu, noszenia wszystkiego zawsze, szafek w szkołach).</p>
 </div>

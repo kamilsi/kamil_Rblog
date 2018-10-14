@@ -14,20 +14,18 @@ Mikołaj (mój super syn) jest w czwartej klasie. W tej klasie zaczyna się prze
 
 # Ważenie
 
-Przyrządem pomiarowym waga lidla i kuchenna. Sam plecak mocno powyżej 5kg, ale co się na to składa?
+Dane z ważenia dostępne są [w formacie CSV na github-ie](https://github.com/kamilsi/kamil_Rblog/blob/master/data/plecak.csv).
 
 ```{r message=FALSE, warning=FALSE}
-library(readr)
-library(here)
 library(tidyverse)
-plecak <- read_delim(here("data/plecak.csv"), ";", 
-    escape_double = FALSE, col_types = cols(X4 = col_skip(), 
-        X5 = col_skip(), X6 = col_skip(), 
-        X7 = col_skip()), trim_ws = TRUE)
-plecak <-
-  plecak %>% 
-  fill(Przedmiot)
-plecak
+library(here)
+library(knitr)
+library(kableExtra)
+
+plecak <- read_csv(here("Rdata/plecak.csv"))
+plecak %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("hover", "responsive", full_width = F))
 ```
 
 Wszystko razem to `r sum(plecak$Waga, na.rm = TRUE)`g.
@@ -39,12 +37,11 @@ Pierwsza rzecz, która rzuciła nam się w oczy to spory rozstrzał jeśli chodz
 ```{r}
 plecak %>% 
   filter(str_detect(Rzecz, "Zeszyt")) %>% 
-  arrange(Waga)
+  ggplot(aes(x = Rzecz, y = Waga)) +
+  geom_jitter(height = 0, width = 0.2)
 ```
 
-Zeszyt z przyrody był w twardej oprawce, ale pozostałe wyglądały podobnie, a mimo wszystko mamy prawie 20g różnicy. Najbardziej zapisany był właśnie ten z polskiego, więc hipotezę o wadze atramentu na kartkach należy odrzucić.
-
-Absolutnym rekordzistą był za to zeszyt z techniki, który był kołonotatnikiem 100 kartkowym w bardzo solidnych, kartonowych oprawach: ważył **pół kilograma** (!). Tu można trochę zaoszczędzić.
+Zeszyt z przyrody (ten ponad odstający od grupy zeszytów 60k) był w twardej oprawce, podobnie jak zeszyt z techniki - kołonotatnik, 100 kartek w bardzo solidnych, kartonowych oprawach (ważył **pół kilograma** (!)). Pierwszy wniosek: rezygnujemy z kołonotatników i grubych opraw, można sporo oszczędzić.
 
 # Akcesoria
 
@@ -53,31 +50,29 @@ Skoro już jesteśmy przy zeszytach, to ile ważą pozostałe akcesoria?
 ```{r}
 plecak %>% 
   filter(Przedmiot == "Przybory") %>% 
-  arrange(Waga)
+  arrange(Waga) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("hover", "responsive", full_width = F))
 ```
 
-"Koszty stałe" to kilogram plecaka i 400g za resztę - nie wygląda to źle.
+"Koszty stałe" to 1450g - nie wygląda to źle.
 
 # Książki
 
-No i sedno: ile ważą książki?Do jednego przedmiotu często jest ich kilka, więc podsumujmy:
+No i sedno: ile ważą książki? Do jednego przedmiotu często jest ich kilka, więc podsumujmy:
 
 ```{r}
 plecak %>% 
   filter(!str_detect(Rzecz,"Zeszyt"), Przedmiot != "Przybory") %>% 
-  group_by(Przedmiot) %>% 
-  summarise(sztuk = n(),
-            waga = sum(Waga, na.rm = TRUE)) %>% 
-  full_join(
-    plecak %>% 
-      filter(str_detect(Rzecz,"Zeszyt")) %>% 
-      group_by(Przedmiot) %>% 
-      summarise(zeszyt = sum(Waga, na.rm = TRUE))
-  ) %>% 
-  arrange(waga)
+  ggplot(aes(x = Przedmiot, weight = Waga, fill = Rzecz)) +
+  geom_bar() +
+  ylab("waga (g)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-No i wszystko jasne: najważniejszym przedmiotem (przynajmniej masowo) jest wcale nie królowa nauk matematyka. Królem wagi ciężkiej jest Polski, do którego 3 książki (podręcznik i 2 zeszyty ćwiczeń) ważą w 1.5kg. Sam polski i plecak (oraz piórnik) dają 3kg. Jeśli mamy pecha i tego samgo dnia jest przyroda, to mamy już 4kg - czyli już blisko granicy której dziecko z czwartej klasy nie powinno przekraczać.
+No i wszystko jasne: najważniejszym przedmiotem (przynajmniej masowo) jest wcale nie królowa nauk matematyka. Królem wagi ciężkiej jest Polski, do którego 3 książki (2 podręczniki i zeszyt ćwiczeń) ważą w 1.5kg. Sam polski i plecak (oraz piórnik) dają 3kg. Jeśli mamy pecha i tego samgo dnia jest przyroda, to mamy już 4kg - czyli już blisko granicy której dziecko z czwartej klasy nie powinno przekraczać.
+
+Nie wolno zapominać o nieobecnych, czyli w tym wypadku **informatyce**, która waży okrągłe 0g - nie ma ani ksiązki, ani zeszytu (a przynajmniej ja nic nie wiem). Zatem najmniej ważna jest informatyka. W ogóle nieważna.
 
 # Czy da się nie przekroczyć 6kg dziennie
 
@@ -101,10 +96,12 @@ plan %>%
   group_by(dzien) %>% 
   summarise(waga = sum(Waga, na.rm = TRUE)) %>% 
   arrange(waga) %>% 
-  mutate(z_pleckiem = waga + 1400)
+  mutate(z_pleckiem = waga + 1400) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("hover", "responsive", full_width = F))
 ```
 
 W internecie czytam, że "Instytut Matki i Dziecka zaleca, żeby plecak dziecka ważył nie więcej niż 10 kg - maksymalnie 15 proc. masy jego ciała". 
-Jeśli chodzi o wagę 9-letnich chłopaków (Miko poszedł do szkoły jako 6-latek) to ze [stron Centrum Zdrowia Dziecka](http://www.czd.pl/images/stories/promocja_zdrowia/Centyle_masy_ciała_chłopcow_w_wieku_3_18_lat.jpg) czytam, że 80% dzieci będzie się mieściło w przedziale 25-41 kg. Zatem 15procent tego oznacza plecak o wadze 3.75-6.15.
+Jeśli chodzi o wagę 9-letnich chłopaków, to ze [stron Centrum Zdrowia Dziecka](http://www.czd.pl/images/stories/promocja_zdrowia/Centyle_masy_ciała_chłopcow_w_wieku_3_18_lat.jpg) czytam, że 80% dzieci będzie się mieściło w przedziale 25-41 kg. Zatem 15 procent tego oznacza, że plecak powinien mieć **maksymalną** wagę w przedziale pomiędzy 3.75kg a 6.15kg - w zależności od wagi dziecka.
 
 Czyli w praktyce albo wysyłamy młodzież na siłkę i suplementujemy białkiem, albo zmieniamy normy, albo rzeczywiście należy poważnie zastanowić się nad optymalizacją (planu, noszenia wszystkiego zawsze, szafek w szkołach). 
