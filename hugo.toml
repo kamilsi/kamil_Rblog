@@ -68,10 +68,10 @@ buildExpired = false
         enabled = true
         title = "Kamil Sijko"
         subtitle = "Data all around • Latent space • Dźwięk autorski • Sprawy lokalne"
-        imageUrl = "/images/binary-code.png"
-        imageTitle = "Kamil Sijko"
-        imageWidth = 120
-        imageHeight = 120
+        imageUrl = "/images/kamil-avatar.jpg"
+        imageTitle = "Live long and prosper - Kamil Sijko"
+        imageWidth = 140
+        imageHeight = 140
         buttons = [
           { name = "Artykuły", url = "post/" },
           { name = "Muzyka", url = "muzyka/" },
@@ -126,10 +126,10 @@ buildExpired = false
         enabled = true
         title = "Kamil Sijko"
         subtitle = "Data all around • Latent space • Original sound • Local insights"
-        imageUrl = "/images/binary-code.png"
-        imageTitle = "Kamil Sijko"
-        imageWidth = 120
-        imageHeight = 120
+        imageUrl = "/images/kamil-avatar.jpg"
+        imageTitle = "Live long and prosper - Kamil Sijko"
+        imageWidth = 140
+        imageHeight = 140
         buttons = [
           { name = "Posts", url = "post/" },
           { name = "Music", url = "muzyka/" },

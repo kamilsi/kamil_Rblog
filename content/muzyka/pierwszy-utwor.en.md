@@ -1,22 +1,13 @@
 ---
-title: "First Track"
+title: "First Track on EP-133"
 date: 2026-10-24
 draft: false
 tags:
+  - ep133
   - music
-  - composition
-summary: "Original tracks — sound experiments and compositions."
+summary: "Today I'm sharing my first, simple track made on the #EP133."
 ---
 
-Here you can write track descriptions, production notes, inspiration, or gear used.
+Today I'm sharing my first, simple track made on the #EP133. I never expected that I would ever compose something myself, but here it is :-)
 
-{{< audio src="/audio/przyklad.mp3" title="Original Track" caption="Audio file in static/audio/" >}}
-
-### Audio Player
-
-The `audio` shortcode accepts:
-- `src`: path to the `.mp3` file (e.g. `/audio/your-track.mp3` placed in `static/audio/`)
-- `title`: track title
-- `caption`: optional caption / date / details
-
-You can also embed standard players from SoundCloud, Bandcamp, Spotify, or YouTube.
+{{< audio src="/audio/ep133-track-01.m4a" title="First Track on EP-133" caption="Composed on Teenage Engineering EP-133 K.O. II" >}}
