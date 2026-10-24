@@ -1,0 +1,101 @@
+baseURL = "https://kamil.sijko.pl/"
+title = "Kamil Sijko"
+theme = "PaperMod"
+locale = "pl"
+defaultContentLanguage = "pl"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[pagination]
+  pagerSize = 10
+
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+[params]
+  env = "production"
+  title = "Kamil Sijko"
+  description = "Dane, przestrzeń ukryta (latent space), autorski dźwięk i sprawy lokalne."
+  keywords = ["Kamil Sijko", "data", "latent space", "muzyka", "analiza danych"]
+  author = "Kamil Sijko"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  DateFormat = "2 January 2006"
+
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+
+  [params.profileMode]
+    enabled = true
+    title = "Kamil Sijko"
+    subtitle = "Data all around • Latent space • Dźwięk autorski • Sprawy lokalne"
+    imageUrl = "/images/binary-code.png"
+    imageTitle = "Kamil Sijko"
+    imageWidth = 120
+    imageHeight = 120
+    buttons = [
+      { name = "Artykuły", url = "/post/" },
+      { name = "Muzyka", url = "/muzyka/" },
+      { name = "Latent Space", url = "/latent-space/" },
+      { name = "O mnie", url = "/about/" },
+    ]
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/kamilsi"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/ksijko/"
+
+  [[params.socialIcons]]
+    name = "x"
+    url = "https://x.com/SijkoKamil"
+
+[menu]
+  [[menu.main]]
+    identifier = "post"
+    name = "Artykuły"
+    url = "/post/"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "muzyka"
+    name = "Muzyka"
+    url = "/muzyka/"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "latent-space"
+    name = "Latent Space"
+    url = "/latent-space/"
+    weight = 30
+
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tagi"
+    url = "/tags/"
+    weight = 40
+
+  [[menu.main]]
+    identifier = "about"
+    name = "O mnie"
+    url = "/about/"
+    weight = 50

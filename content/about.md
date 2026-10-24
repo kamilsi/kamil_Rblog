@@ -1,6 +1,15 @@
 ---
-title: "About"
-date: "2016-05-05T21:48:51-07:00"
+title: "O mnie"
+date: "2026-10-24"
+summary: "O autorze bloga"
 ---
 
-This is a "hello world" example website for the [**blogdown**](https://github.com/rstudio/blogdown) package. The theme was forked from [@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme) and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium-theme).
+Cześć! Nazywam się Kamil Sijko.
+
+Zajmuję się danymi, uczeniem maszynowym, eksploracją przestrzeni ukrytych (latent spaces) oraz dźwiękiem i sprawami lokalnymi.
+
+### Kontakt i profile
+
+- **GitHub**: [github.com/kamilsi](https://github.com/kamilsi)
+- **LinkedIn**: [linkedin.com/in/ksijko](https://www.linkedin.com/in/ksijko/)
+- **X / Twitter**: [x.com/SijkoKamil](https://x.com/SijkoKamil)

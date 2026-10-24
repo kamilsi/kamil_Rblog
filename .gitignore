@@ -4,3 +4,5 @@
 .Ruserdata
 /public/
 packrat/lib*/
+.hugo_build.lock
+resources/

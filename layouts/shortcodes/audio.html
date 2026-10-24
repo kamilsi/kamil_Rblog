@@ -1,0 +1,13 @@
+<div class="audio-player" style="margin: 1.5rem 0; padding: 1rem; border-radius: 8px; background: var(--entry); border: 1px solid var(--border);">
+  {{ with .Get "title" }}
+  <div style="font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+    <span>🎵</span> <span>{{ . }}</span>
+  </div>
+  {{ end }}
+  <audio controls preload="metadata" style="width: 100%; outline: none;" src="{{ .Get "src" | relURL }}">
+    Twoja przeglądarka nie obsługuje elementu audio.
+  </audio>
+  {{ with .Get "caption" }}
+  <div style="font-size: 0.85rem; color: var(--secondary); margin-top: 0.4rem;">{{ . }}</div>
+  {{ end }}
+</div>
