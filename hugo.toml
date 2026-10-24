@@ -1,8 +1,8 @@
 baseURL = "https://kamil.sijko.pl/"
-title = "Kamil Sijko"
 theme = "PaperMod"
-locale = "pl"
+
 defaultContentLanguage = "pl"
+defaultContentLanguageInSubdir = false
 
 enableRobotsTXT = true
 buildDrafts = false
@@ -18,13 +18,10 @@ buildExpired = false
 
 [params]
   env = "production"
-  title = "Kamil Sijko"
-  description = "Dane, przestrzeń ukryta (latent space), autorski dźwięk i sprawy lokalne."
-  keywords = ["Kamil Sijko", "data", "latent space", "muzyka", "analiza danych"]
-  author = "Kamil Sijko"
   defaultTheme = "auto"
   disableThemeToggle = false
-  DateFormat = "2 January 2006"
+  displayFullLangName = true
+  disableLangToggle = false
 
   ShowReadingTime = true
   ShowShareButtons = false
@@ -42,21 +39,6 @@ buildExpired = false
   showtoc = false
   tocopen = false
 
-  [params.profileMode]
-    enabled = true
-    title = "Kamil Sijko"
-    subtitle = "Data all around • Latent space • Dźwięk autorski • Sprawy lokalne"
-    imageUrl = "/images/binary-code.png"
-    imageTitle = "Kamil Sijko"
-    imageWidth = 120
-    imageHeight = 120
-    buttons = [
-      { name = "Artykuły", url = "/post/" },
-      { name = "Muzyka", url = "/muzyka/" },
-      { name = "Latent Space", url = "/latent-space/" },
-      { name = "O mnie", url = "/about/" },
-    ]
-
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/kamilsi"
@@ -69,33 +51,119 @@ buildExpired = false
     name = "x"
     url = "https://x.com/SijkoKamil"
 
-[menu]
-  [[menu.main]]
-    identifier = "post"
-    name = "Artykuły"
-    url = "/post/"
-    weight = 10
+[languages]
+  [languages.pl]
+    locale = "pl"
+    label = "Polski"
+    weight = 1
+    title = "Kamil Sijko"
 
-  [[menu.main]]
-    identifier = "muzyka"
-    name = "Muzyka"
-    url = "/muzyka/"
-    weight = 20
+    [languages.pl.params]
+      description = "Dane, przestrzeń ukryta (latent space), autorski dźwięk i sprawy lokalne."
+      keywords = ["Kamil Sijko", "dane", "latent space", "muzyka", "analiza danych"]
+      author = "Kamil Sijko"
+      DateFormat = "2 January 2006"
 
-  [[menu.main]]
-    identifier = "latent-space"
-    name = "Latent Space"
-    url = "/latent-space/"
-    weight = 30
+      [languages.pl.params.profileMode]
+        enabled = true
+        title = "Kamil Sijko"
+        subtitle = "Data all around • Latent space • Dźwięk autorski • Sprawy lokalne"
+        imageUrl = "/images/binary-code.png"
+        imageTitle = "Kamil Sijko"
+        imageWidth = 120
+        imageHeight = 120
+        buttons = [
+          { name = "Artykuły", url = "post/" },
+          { name = "Muzyka", url = "muzyka/" },
+          { name = "Latent Space", url = "latent-space/" },
+          { name = "O mnie", url = "about/" },
+        ]
 
-  [[menu.main]]
-    identifier = "tags"
-    name = "Tagi"
-    url = "/tags/"
-    weight = 40
+    [languages.pl.menu]
+      [[languages.pl.menu.main]]
+        identifier = "post"
+        name = "Artykuły"
+        url = "post/"
+        weight = 10
 
-  [[menu.main]]
-    identifier = "about"
-    name = "O mnie"
-    url = "/about/"
-    weight = 50
+      [[languages.pl.menu.main]]
+        identifier = "muzyka"
+        name = "Muzyka"
+        url = "muzyka/"
+        weight = 20
+
+      [[languages.pl.menu.main]]
+        identifier = "latent-space"
+        name = "Latent Space"
+        url = "latent-space/"
+        weight = 30
+
+      [[languages.pl.menu.main]]
+        identifier = "tags"
+        name = "Tagi"
+        url = "tags/"
+        weight = 40
+
+      [[languages.pl.menu.main]]
+        identifier = "about"
+        name = "O mnie"
+        url = "about/"
+        weight = 50
+
+  [languages.en]
+    locale = "en"
+    label = "English"
+    weight = 2
+    title = "Kamil Sijko"
+
+    [languages.en.params]
+      description = "Data, latent space exploration, original sound and local insights."
+      keywords = ["Kamil Sijko", "data", "latent space", "music", "data analysis"]
+      author = "Kamil Sijko"
+      DateFormat = "January 2, 2006"
+
+      [languages.en.params.profileMode]
+        enabled = true
+        title = "Kamil Sijko"
+        subtitle = "Data all around • Latent space • Original sound • Local insights"
+        imageUrl = "/images/binary-code.png"
+        imageTitle = "Kamil Sijko"
+        imageWidth = 120
+        imageHeight = 120
+        buttons = [
+          { name = "Posts", url = "post/" },
+          { name = "Music", url = "muzyka/" },
+          { name = "Latent Space", url = "latent-space/" },
+          { name = "About", url = "about/" },
+        ]
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "post"
+        name = "Posts"
+        url = "post/"
+        weight = 10
+
+      [[languages.en.menu.main]]
+        identifier = "muzyka"
+        name = "Music"
+        url = "muzyka/"
+        weight = 20
+
+      [[languages.en.menu.main]]
+        identifier = "latent-space"
+        name = "Latent Space"
+        url = "latent-space/"
+        weight = 30
+
+      [[languages.en.menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        url = "tags/"
+        weight = 40
+
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "about/"
+        weight = 50
