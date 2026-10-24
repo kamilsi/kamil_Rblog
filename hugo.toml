@@ -67,15 +67,14 @@ buildExpired = false
       [languages.pl.params.profileMode]
         enabled = true
         title = "Kamil Sijko"
-        subtitle = "Data all around • Latent space • Dźwięk autorski • Sprawy lokalne"
-        imageUrl = "/images/kamil-avatar.jpg"
+        subtitle = "Rzeczy mi bliskie: ukryte przestrzenie w danych, muzyka, fotografia"
+        imageUrl = "images/kamil-avatar.jpg"
         imageTitle = "Live long and prosper - Kamil Sijko"
-        imageWidth = 140
-        imageHeight = 140
+        imageWidth = 150
+        imageHeight = 150
         buttons = [
           { name = "Artykuły", url = "post/" },
           { name = "Muzyka", url = "muzyka/" },
-          { name = "Latent Space", url = "latent-space/" },
           { name = "O mnie", url = "about/" },
         ]
 
@@ -93,22 +92,16 @@ buildExpired = false
         weight = 20
 
       [[languages.pl.menu.main]]
-        identifier = "latent-space"
-        name = "Latent Space"
-        url = "latent-space/"
-        weight = 30
-
-      [[languages.pl.menu.main]]
         identifier = "tags"
         name = "Tagi"
         url = "tags/"
-        weight = 40
+        weight = 30
 
       [[languages.pl.menu.main]]
         identifier = "about"
         name = "O mnie"
         url = "about/"
-        weight = 50
+        weight = 40
 
   [languages.en]
     locale = "en"
@@ -117,23 +110,22 @@ buildExpired = false
     title = "Kamil Sijko"
 
     [languages.en.params]
-      description = "Data, latent space exploration, original sound and local insights."
-      keywords = ["Kamil Sijko", "data", "latent space", "music", "data analysis"]
+      description = "Things close to me: hidden spaces in data, music, photography"
+      keywords = ["Kamil Sijko", "data", "music", "photography", "data analysis"]
       author = "Kamil Sijko"
       DateFormat = "January 2, 2006"
 
       [languages.en.params.profileMode]
         enabled = true
         title = "Kamil Sijko"
-        subtitle = "Data all around • Latent space • Original sound • Local insights"
-        imageUrl = "/images/kamil-avatar.jpg"
+        subtitle = "Things close to me: hidden spaces in data, music, photography"
+        imageUrl = "images/kamil-avatar.jpg"
         imageTitle = "Live long and prosper - Kamil Sijko"
-        imageWidth = 140
-        imageHeight = 140
+        imageWidth = 150
+        imageHeight = 150
         buttons = [
           { name = "Posts", url = "post/" },
           { name = "Music", url = "muzyka/" },
-          { name = "Latent Space", url = "latent-space/" },
           { name = "About", url = "about/" },
         ]
 
@@ -151,19 +143,13 @@ buildExpired = false
         weight = 20
 
       [[languages.en.menu.main]]
-        identifier = "latent-space"
-        name = "Latent Space"
-        url = "latent-space/"
-        weight = 30
-
-      [[languages.en.menu.main]]
         identifier = "tags"
         name = "Tags"
         url = "tags/"
-        weight = 40
+        weight = 30
 
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "about/"
-        weight = 50
+        weight = 40
