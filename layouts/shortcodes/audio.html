@@ -1,13 +1,13 @@
-<div class="audio-player" style="margin: 1.5rem 0; padding: 1rem; border-radius: 8px; background: var(--entry); border: 1px solid var(--border);">
+<div class="my-6 p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/60 shadow-sm">
   {{ with .Get "title" }}
-  <div style="font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+  <div class="font-semibold text-neutral-800 dark:text-neutral-100 mb-2 flex items-center gap-2">
     <span>🎵</span> <span>{{ . }}</span>
   </div>
   {{ end }}
-  <audio controls preload="metadata" style="width: 100%; outline: none;" src="{{ .Get "src" | relURL }}">
+  <audio controls preload="metadata" class="w-full outline-none my-1" src="{{ .Get "src" | relURL }}">
     Twoja przeglądarka nie obsługuje elementu audio.
   </audio>
   {{ with .Get "caption" }}
-  <div style="font-size: 0.85rem; color: var(--secondary); margin-top: 0.4rem;">{{ . }}</div>
+  <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">{{ . }}</div>
   {{ end }}
 </div>

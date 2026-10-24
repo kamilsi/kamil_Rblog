@@ -1,0 +1,23 @@
+disabled = false
+locale = "pl"
+label = "Polski"
+weight = 1
+title = "Kamil Sijko"
+
+[params]
+  displayName = "PL"
+  isoCode = "pl"
+  rtl = false
+  dateFormat = "2 January 2006"
+  description = "Rzeczy mi bliskie: ukryte przestrzenie w danych, muzyka, fotografia"
+
+[params.author]
+  name = "Kamil Sijko"
+  image = "images/kamil-avatar.jpg"
+  headline = "Rzeczy mi bliskie: ukryte przestrzenie w danych, muzyka, fotografia"
+  bio = "Dane, przestrzeń ukryta (latent space), autorski dźwięk i fotografia."
+  links = [
+    { github = "https://github.com/kamilsi" },
+    { linkedin = "https://www.linkedin.com/in/ksijko/" },
+    { x-twitter = "https://x.com/SijkoKamil" }
+  ]

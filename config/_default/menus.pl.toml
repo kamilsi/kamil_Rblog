@@ -1,0 +1,19 @@
+[[main]]
+  name = "Artykuły"
+  pageRef = "post"
+  weight = 10
+
+[[main]]
+  name = "Muzyka"
+  pageRef = "muzyka"
+  weight = 20
+
+[[main]]
+  name = "Tagi"
+  pageRef = "tags"
+  weight = 30
+
+[[main]]
+  name = "O mnie"
+  pageRef = "about"
+  weight = 40

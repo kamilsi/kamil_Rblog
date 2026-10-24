@@ -1,0 +1,23 @@
+disabled = false
+locale = "en"
+label = "English"
+weight = 2
+title = "Kamil Sijko"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "January 2, 2006"
+  description = "Things close to me: hidden spaces in data, music, photography"
+
+[params.author]
+  name = "Kamil Sijko"
+  image = "images/kamil-avatar.jpg"
+  headline = "Things close to me: hidden spaces in data, music, photography"
+  bio = "Data, latent space, original sound, and photography."
+  links = [
+    { github = "https://github.com/kamilsi" },
+    { linkedin = "https://www.linkedin.com/in/ksijko/" },
+    { x-twitter = "https://x.com/SijkoKamil" }
+  ]
