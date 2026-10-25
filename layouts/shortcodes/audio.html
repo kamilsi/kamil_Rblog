@@ -11,3 +11,26 @@
   <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">{{ . }}</div>
   {{ end }}
 </div>
+<script>
+  (function() {
+    const scripts = document.getElementsByTagName('script');
+    const currentScript = scripts[scripts.length - 1];
+    const container = currentScript.previousElementSibling;
+    if (!container) return;
+    const audio = container.querySelector('audio');
+    if (audio && 'mediaSession' in navigator) {
+      audio.addEventListener('play', function() {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: {{ .Get "title" | default "Audio" }},
+          artist: "Kamil Sijko",
+          album: {{ .Page.Title | default "Kamil Sijko" }},
+          artwork: [
+            { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+            { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+            { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
+          ]
+        });
+      });
+    }
+  })();
+</script>
