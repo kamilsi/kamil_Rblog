@@ -13,10 +13,10 @@
 </div>
 {{ $pageCover := "" }}
 {{ with .Page.Resources.GetMatch "*feature*" }}
-  {{ $pageCover = .RelPermalink }}
+  {{ $pageCover = .RelPermalink | absURL }}
 {{ else }}
   {{ with .Page.Resources.GetMatch "*cover*" }}
-    {{ $pageCover = .RelPermalink }}
+    {{ $pageCover = .RelPermalink | absURL }}
   {{ end }}
 {{ end }}
 <script>
@@ -32,8 +32,8 @@
         {{ if $pageCover }}
         artworks.push({ src: {{ $pageCover }}, sizes: '1024x1024', type: 'image/jpeg' });
         {{ end }}
-        artworks.push({ src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' });
-        artworks.push({ src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' });
+        artworks.push({ src: {{ "apple-touch-icon.png" | absURL }}, sizes: '180x180', type: 'image/png' });
+        artworks.push({ src: {{ "android-chrome-512x512.png" | absURL }}, sizes: '512x512', type: 'image/png' });
 
         navigator.mediaSession.metadata = new MediaMetadata({
           title: {{ .Get "title" | default "Audio" }},
