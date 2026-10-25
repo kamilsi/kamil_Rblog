@@ -3,6 +3,8 @@ title: "Plecak"
 author: "Kamil Sijko"
 date: "2018-10-01"
 slug: "plecak"
+aliases:
+  - /2018/10/01/plecak/
 categories:
   - edukacja
   - analizy
@@ -11,6 +13,8 @@ tags:
   - szkola
   - dzieci
 ---
+
+![Waga plecaka czwartoklasisty – eksperyment Mikołaja](featured.jpg)
 
 Mikołaj (mój super syn) jest w czwartej klasie. W tej klasie zaczyna się przedmiot „przyroda”, a w jego ramach informacje o metodologii badań. Przy okazji obecnej dyskusji o wadze tornistrów postanowiłem zrobić jako pracę domową dla chętnych eksperyment ważenia zawartości plecaka, żeby dowiedzieć się, który przedmiot waży najwięcej. Czyli który najważniejszy?
 

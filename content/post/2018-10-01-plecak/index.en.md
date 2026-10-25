@@ -3,6 +3,8 @@ title: "The Schoolbag Experiment"
 author: "Kamil Sijko"
 date: "2018-10-01"
 slug: "plecak"
+aliases:
+  - /en/2018/10/01/plecak/
 categories:
   - education
   - data-analysis
@@ -11,6 +13,8 @@ tags:
   - school
   - children
 ---
+
+![Fourth grade schoolbag weight experiment](featured.jpg)
 
 Mikołaj (my awesome son) is in the fourth grade. This year starts a new subject called "Nature Studies", which includes basic research methodology. Amid the recurring national debate regarding the excessive weight of school backpacks, I decided to run an experiment for my child's homework: weighing every single item in the backpack to find out which item weighs the most — and therefore, which subject is "heaviest".
 
