@@ -17,7 +17,7 @@ enableStructuredBreadcrumbs = false
 
 replyByEmail = false
 
-mainSections = ["post", "muzyka"]
+mainSections = ["post", "muzyka", "fotografia"]
 # robots = ""
 
 disableImageOptimization = false

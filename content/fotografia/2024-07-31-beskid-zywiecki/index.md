@@ -2,6 +2,8 @@
 title: "Beskid Żywiecki"
 date: "2024-07-31"
 slug: "beskid-zywiecki"
+aliases:
+  - /post/beskid-zywiecki/
 description: "Beskid Żywiecki ma zakamarki gdzie można znaleźć szlaki w górach takimi, jakimi je sobie wyobrażamy - pustymi, bez śladów cywilizacji, a za to z piękną przyrodą i pejzażami."
 summary: "Beskid Żywiecki ma zakamarki gdzie można znaleźć szlaki w górach takimi, jakimi je sobie wyobrażamy - pustymi, bez śladów cywilizacji, a za to z piękną przyrodą i pejzażami."
 categories:

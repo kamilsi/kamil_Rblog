@@ -2,6 +2,9 @@
 title: "Beskid Żywiecki"
 date: "2024-07-31"
 slug: "beskid-zywiecki"
+aliases:
+  - /post/beskid-zywiecki/
+  - /en/post/beskid-zywiecki/
 description: "Beskid Żywiecki has secluded corners where you can find mountain trails just as we imagine them — empty, untouched by civilization, yet filled with beautiful nature and landscapes."
 summary: "Beskid Żywiecki has secluded corners where you can find mountain trails just as we imagine them — empty, untouched by civilization, yet filled with beautiful nature and landscapes."
 categories:
