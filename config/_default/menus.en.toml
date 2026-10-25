@@ -14,6 +14,11 @@
   weight = 25
 
 [[main]]
+  name = "Science"
+  pageRef = "nauka"
+  weight = 28
+
+[[main]]
   name = "Tags"
   pageRef = "tags"
   weight = 30

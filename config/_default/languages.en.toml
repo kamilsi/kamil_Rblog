@@ -19,5 +19,7 @@ title = "Kamil Sijko"
   links = [
     { github = "https://github.com/kamilsi" },
     { linkedin = "https://www.linkedin.com/in/ksijko/" },
-    { x-twitter = "https://x.com/SijkoKamil" }
+    { x-twitter = "https://x.com/SijkoKamil" },
+    { google-scholar = "https://scholar.google.com/citations?view_op=search_authors&mauthors=Kamil+Sijko" },
+    { orcid = "https://orcid.org/0000-0002-2203-1065" }
   ]
