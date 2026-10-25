@@ -1,7 +1,7 @@
 <div class="my-6 p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/60 shadow-sm">
   {{ with .Get "title" }}
-  <div class="font-semibold text-neutral-800 dark:text-neutral-100 mb-2 flex items-center gap-2">
-    <span>🎵</span> <span>{{ . }}</span>
+  <div class="font-semibold text-neutral-800 dark:text-neutral-100 mb-2">
+    {{ . }}
   </div>
   {{ end }}
   <audio controls preload="metadata" class="w-full outline-none my-1" src="{{ .Get "src" | relURL }}">
@@ -11,6 +11,14 @@
   <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">{{ . }}</div>
   {{ end }}
 </div>
+{{ $pageCover := "" }}
+{{ with .Page.Resources.GetMatch "*feature*" }}
+  {{ $pageCover = .RelPermalink }}
+{{ else }}
+  {{ with .Page.Resources.GetMatch "*cover*" }}
+    {{ $pageCover = .RelPermalink }}
+  {{ end }}
+{{ end }}
 <script>
   (function() {
     const scripts = document.getElementsByTagName('script');
@@ -20,15 +28,18 @@
     const audio = container.querySelector('audio');
     if (audio && 'mediaSession' in navigator) {
       audio.addEventListener('play', function() {
+        const artworks = [];
+        {{ if $pageCover }}
+        artworks.push({ src: {{ $pageCover }}, sizes: '1024x1024', type: 'image/jpeg' });
+        {{ end }}
+        artworks.push({ src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' });
+        artworks.push({ src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' });
+
         navigator.mediaSession.metadata = new MediaMetadata({
           title: {{ .Get "title" | default "Audio" }},
           artist: "Kamil Sijko",
           album: {{ .Page.Title | default "Kamil Sijko" }},
-          artwork: [
-            { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-            { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-            { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
-          ]
+          artwork: artworks
         });
       });
     }
